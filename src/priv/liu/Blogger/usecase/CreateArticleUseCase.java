@@ -8,6 +8,6 @@ import priv.liu.Blogger.exception.InvalidArticleException;
 public class CreateArticleUseCase {
 	public void execute(String title, String content, String username) throws InvalidArticleException, AuthorNotExistException {
 		Article article = new Article(title, content);
-		new ArticleDao().create(article, username); // title should not exist
+		new ArticleDao().create(article, username);
 	}
 }
