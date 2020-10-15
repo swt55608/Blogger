@@ -6,23 +6,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import priv.liu.Blogger.RegisterException;
+import priv.liu.Blogger.exception.RegisterException;
+import priv.liu.Blogger.dao.connector.DatabaseConnector;
 import priv.liu.Blogger.entity.Author;
+import priv.liu.Blogger.exception.AuthorNotExistException;
 
 public class AuthorDao {
 	
 	private Connection _conn;
 	
 	public AuthorDao() {
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:mysql://localhost:3306/blogger?serverTimezone=UTC";
-			String username = "root";
-			String password = "test1234";
-			_conn = DriverManager.getConnection(url, username, password);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		_conn = new DatabaseConnector().getConnection();
 	}
 	
 	public void register(Author author) throws RegisterException {
@@ -52,5 +46,23 @@ public class AuthorDao {
 			sqlException.printStackTrace();
 		}
 		return isLogin;
+	}
+	
+	public int getId(String username) throws AuthorNotExistException {
+		int id = -1;
+		try {
+			String sql = "SELECT * FROM authors"
+					+ " WHERE username=?;";
+			PreparedStatement prestmt = _conn.prepareStatement(sql);
+			prestmt.setString(1, username);
+			ResultSet rs = prestmt.executeQuery();
+			if (rs.next())
+				id = rs.getInt("id");
+			else 
+				throw new AuthorNotExistException();
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return id;
 	}
 }

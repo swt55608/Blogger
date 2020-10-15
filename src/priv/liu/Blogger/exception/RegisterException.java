@@ -1,4 +1,4 @@
-package priv.liu.Blogger;
+package priv.liu.Blogger.exception;
 
 public class RegisterException extends Exception {
 	@Override

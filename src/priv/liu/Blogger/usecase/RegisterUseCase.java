@@ -1,6 +1,6 @@
 package priv.liu.Blogger.usecase;
 
-import priv.liu.Blogger.RegisterException;
+import priv.liu.Blogger.exception.RegisterException;
 import priv.liu.Blogger.dao.AuthorDao;
 import priv.liu.Blogger.entity.Author;
 
