@@ -4,7 +4,6 @@ import priv.liu.Blogger.dao.ArticleDao;
 import priv.liu.Blogger.entity.Article;
 import priv.liu.Blogger.exception.AuthorNotExistException;
 import priv.liu.Blogger.exception.InvalidArticleException;
-import priv.liu.Blogger.exception.RegisterException;
 
 public class CreateArticleUseCase {
 	public void execute(String title, String content, String username) throws InvalidArticleException, AuthorNotExistException {

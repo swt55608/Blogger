@@ -10,6 +10,7 @@ import priv.liu.Blogger.entity.Article;
 import priv.liu.Blogger.exception.InvalidArticleException;
 import priv.liu.Blogger.exception.ArticleNotExistException;
 import priv.liu.Blogger.exception.AuthorNotExistException;
+import priv.liu.Blogger.exception.EditArticleFailureExcetion;
 
 public class ArticleDao {
 	private Connection _conn;
@@ -28,8 +29,6 @@ public class ArticleDao {
 			prestmt.setString(2, article.getContent());
 			prestmt.setInt(3, authorId);
 			prestmt.executeUpdate();
-		} catch (AuthorNotExistException ae) {
-			throw ae;
 		} catch (SQLException sqlException) {
 			throw new InvalidArticleException();
 		}
@@ -55,5 +54,24 @@ public class ArticleDao {
 			sqlException.printStackTrace();
 		}
 		return article;
+	}
+	
+	public void editArticle(String articleTitle, Article newArticle, String authorName) throws AuthorNotExistException, EditArticleFailureExcetion {
+		try {
+			int authorId = new AuthorDao().getId(authorName);
+			String sql = "UPDATE articles" + 
+					" SET title=?, content=?" + 
+					" WHERE title=? AND author_id=?;";
+			PreparedStatement prestmt = _conn.prepareStatement(sql);
+			prestmt.setString(1, newArticle.getTitle());
+			prestmt.setString(2, newArticle.getContent());
+			prestmt.setString(3, articleTitle);
+			prestmt.setInt(4, authorId);
+			boolean isEdit = prestmt.executeUpdate() > 0;
+			if (!isEdit)
+				throw new EditArticleFailureExcetion(articleTitle, authorName);
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
 	}
 }
