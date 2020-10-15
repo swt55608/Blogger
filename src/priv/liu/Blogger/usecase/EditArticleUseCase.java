@@ -6,7 +6,8 @@ import priv.liu.Blogger.exception.AuthorNotExistException;
 import priv.liu.Blogger.exception.EditArticleFailureExcetion;
 
 public class EditArticleUseCase {
-	public void execute(String oldArticleTitle, Article newArticle, String authorName) throws AuthorNotExistException, EditArticleFailureExcetion {
-		new ArticleDao().editArticle(oldArticleTitle, newArticle, authorName);
+	public void execute(String articleTitle, String newArticleTitle, String newArticleContent, String authorName) throws AuthorNotExistException, EditArticleFailureExcetion {
+		Article newArticle = new Article(newArticleTitle, newArticleContent);
+		new ArticleDao().editArticle(articleTitle, newArticle, authorName);
 	}
 }
