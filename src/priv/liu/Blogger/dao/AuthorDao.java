@@ -3,6 +3,7 @@ package priv.liu.Blogger.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import priv.liu.Blogger.RegisterException;
@@ -35,5 +36,21 @@ public class AuthorDao {
 		} catch (SQLException sqlException) {
 			throw new RegisterException();
 		}
+	}
+	
+	public boolean login(Author author) {
+		boolean isLogin = false;
+		try {
+			String sql = "SELECT * FROM authors"
+					+ " WHERE username=? AND password=?;";
+			PreparedStatement prestmt = _conn.prepareStatement(sql);
+			prestmt.setString(1, author.getUsername());
+			prestmt.setString(2, author.getPassword());
+			ResultSet rs = prestmt.executeQuery();
+			isLogin = rs.next();
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return isLogin;
 	}
 }
