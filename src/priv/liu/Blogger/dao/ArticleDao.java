@@ -74,4 +74,21 @@ public class ArticleDao {
 			sqlException.printStackTrace();
 		}
 	}
+	
+	public boolean deleteArticle(String articleTitle, String authorName) throws AuthorNotExistException {
+		boolean isDeleted = false;
+		try {
+			int authorId = new AuthorDao().getId(authorName);
+			String sql = "DELETE FROM articles" + 
+					" WHERE title=? AND author_id=?;";
+			PreparedStatement prestmt = _conn.prepareStatement(sql);
+			prestmt.setString(1, articleTitle);
+			prestmt.setInt(2, authorId);
+			isDeleted = prestmt.executeUpdate() > 0;
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+			isDeleted = false;
+		}
+		return isDeleted;
+	}
 }
