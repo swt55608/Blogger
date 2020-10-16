@@ -36,7 +36,26 @@ public class ArticleDao {
 		}
 	}
 	
-	public List<Article> findArticles(String authorName) throws AuthorNotExistException {
+	public List<Article> getArticles() {
+		List<Article> articles = new ArrayList<Article>();
+		try {
+			String sql = "SELECT title, content, authors.username FROM articles"
+					+ " JOIN authors ON articles.author_id = authors.id;";
+			PreparedStatement prestmt = _conn.prepareStatement(sql);;
+			ResultSet rs = prestmt.executeQuery();
+			while (rs.next()) {
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String authorName = rs.getString("authors.username");
+				articles.add(new Article(title, content, authorName));
+			}
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
+		return articles;
+	} 
+	
+	public List<Article> getArticles(String authorName) throws AuthorNotExistException {
 		List<Article> articles = new ArrayList<Article>();
 		try {
 			int authorId = new AuthorDao().getId(authorName);

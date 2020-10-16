@@ -9,6 +9,6 @@ import priv.liu.Blogger.exception.AuthorNotExistException;
 
 public class ViewAuthorArticlesUseCase {
 	public List<Article> execute(String authorName) throws AuthorNotExistException {
-		return new ArticleDao().findArticles(authorName);
+		return new ArticleDao().getArticles(authorName);
 	}
 }
