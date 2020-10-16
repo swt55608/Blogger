@@ -15,7 +15,7 @@
 			<h2>${article.title}</h2>
 			<p>${article.content}</p>
 			<h5>owned by ${article.authorName}</h5>
-			<a href="edit_article.jsp">Edit</a>|
+			<a href="edit_article.jsp?articleTitle=${article.title}">Edit</a>|
 			<a href="DeleteArticleServlet?articleTitle=${article.title}">Delete</a>
 		</div>
 		<br>

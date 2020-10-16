@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>Create an Article</h1>
 	<form action="CreateArticleServlet" method="get">
 		Title: <input type="text" name="articleTitle"> <br>
 		Content: <input type="text" name="articleContent"> <br>
 		<input type="submit">
 	</form>
-	${errorMessage}
+	${requestScope.errorMessage}
 </body>
 </html>

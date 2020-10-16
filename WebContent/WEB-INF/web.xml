@@ -28,7 +28,7 @@
   
   <filter-mapping>
   	<filter-name>GetAuthorArticlesFilter</filter-name>
-  	<url-pattern>/author_page.jsp</url-pattern>
+  	<url-pattern>/author_personal_page.jsp</url-pattern>
   	<dispatcher>REQUEST</dispatcher>
   </filter-mapping>
 </web-app>

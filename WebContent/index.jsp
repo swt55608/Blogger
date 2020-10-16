@@ -17,7 +17,7 @@
 	
 	<c:if test="${!empty sessionScope.username}">
 		<div>
-			Welcome! <a href="author_page.jsp">${sessionScope.username}</a> |
+			Welcome! <a href="author_personal_page.jsp">${sessionScope.username}</a> |
 			<a href="LogoutServlet">Logout</a>
 		</div>
 	</c:if>

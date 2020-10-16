@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			session.setAttribute("username", null);
 			request.setAttribute("errorMessage", "Incorrect Username or Password");
-			request.getRequestDispatcher("register.jsp").forward(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		}		
 	}
 
