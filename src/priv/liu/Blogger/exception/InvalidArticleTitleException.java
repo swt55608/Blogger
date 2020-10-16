@@ -1,7 +1,7 @@
 package priv.liu.Blogger.exception;
 
-public class InvalidArticleException extends Exception {
-	public InvalidArticleException() {
+public class InvalidArticleTitleException extends Exception {
+	public InvalidArticleTitleException() {
 		super("Article Title should not be duplicative or empty.");
 	}
 	

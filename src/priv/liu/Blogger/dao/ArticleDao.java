@@ -9,7 +9,7 @@ import java.util.List;
 
 import priv.liu.Blogger.dao.connector.DatabaseConnector;
 import priv.liu.Blogger.entity.Article;
-import priv.liu.Blogger.exception.InvalidArticleException;
+import priv.liu.Blogger.exception.InvalidArticleTitleException;
 import priv.liu.Blogger.exception.ArticleNotFoundException;
 import priv.liu.Blogger.exception.AuthorNotExistException;
 import priv.liu.Blogger.exception.EditArticleFailureExcetion;
@@ -21,7 +21,7 @@ public class ArticleDao {
 		_conn = new DatabaseConnector().getConnection();
 	}
 	
-	public void create(Article article, String authorName) throws InvalidArticleException, AuthorNotExistException {
+	public void create(Article article, String authorName) throws InvalidArticleTitleException, AuthorNotExistException {
 		try {
 			int authorId = new AuthorDao().getId(authorName);
 			String sql = "INSERT INTO articles (title, content, author_id)"
@@ -32,7 +32,7 @@ public class ArticleDao {
 			prestmt.setInt(3, authorId);
 			prestmt.executeUpdate();
 		} catch (SQLException sqlException) {
-			throw new InvalidArticleException();
+			throw new InvalidArticleTitleException();
 		}
 	}
 	
