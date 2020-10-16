@@ -10,14 +10,15 @@
 <body>
 	<h1>${sessionScope.username} Personal Page</h1>
 	<a href="create_article.jsp">Create Article</a>
-	<c:forEach items="${sessionScope.articles}" var="article">
-		<div>
+	<c:forEach items="${sessionScope.authorArticles}" var="article">
+		<div style="border: 2px solid gray;">
 			<h2>${article.title}</h2>
 			<p>${article.content}</p>
-			<h6>owned by ${article.authorName}</h6>
-			<a href="edit.jsp">Edit</a>|
+			<h5>owned by ${article.authorName}</h5>
+			<a href="edit_article.jsp">Edit</a>|
 			<a href="DeleteArticleServlet?articleTitle=${article.title}">Delete</a>
 		</div>
+		<br>
 	</c:forEach>
 </body>
 </html>

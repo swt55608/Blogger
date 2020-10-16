@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="BIG5">
-<title>Insert title here</title>
+	<meta charset="BIG5">
+	<title>Insert title here</title>
 </head>
 <body>
 	<c:if test="${empty sessionScope.username}">
@@ -17,11 +17,18 @@
 	
 	<c:if test="${!empty sessionScope.username}">
 		<div>
-			Welcome! <a href="author_page.jsp">${sessionScope.username}</a>> |
+			Welcome! <a href="author_page.jsp">${sessionScope.username}</a> |
 			<a href="LogoutServlet">Logout</a>
 		</div>
 	</c:if>
 	
-	
+	<c:forEach items="${sessionScope.allArticles}" var="article">
+		<div style="border: 2px solid gray;">
+			<h2>${article.title}</h2>
+			<p>${article.content}</p>
+			<h5>owned by ${article.authorName}</h5>
+		</div>
+		<br>
+	</c:forEach>
 </body>
 </html>

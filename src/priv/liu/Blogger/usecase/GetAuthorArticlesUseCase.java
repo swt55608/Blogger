@@ -7,7 +7,7 @@ import priv.liu.Blogger.entity.Article;
 import priv.liu.Blogger.exception.ArticleNotFoundException;
 import priv.liu.Blogger.exception.AuthorNotExistException;
 
-public class ViewAuthorArticlesUseCase {
+public class GetAuthorArticlesUseCase {
 	public List<Article> execute(String authorName) throws AuthorNotExistException {
 		return new ArticleDao().getArticles(authorName);
 	}
