@@ -20,5 +20,6 @@
 		</div>
 		<br>
 	</c:forEach>
+	${requestScope.errorMessage}
 </body>
 </html>
