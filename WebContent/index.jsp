@@ -66,31 +66,32 @@
 			</c:if>
 		</header>
 		
-		<!-- Grid -->
-		<div class="w3-row">
-		
-			<!-- Blog entries -->
-			<div class="w3-col l12 s12">
-				<c:forEach items="${sessionScope.allArticles}" var="article">
-					<!-- Blog entry -->
-					<div class="w3-card-4 w3-margin w3-white">
-					  <div class="w3-container">
-					    <h3><b>${article.title}</b></h3>
-					    <h5><span class="w3-opacity">owned by ${article.authorName}</span></h5>
-					  </div>
-					  
-					  <div class="w3-container">
-					     <p>${article.content}</p>
-					  </div>
-					</div>
-					<hr>
-				</c:forEach>
-			<!-- END BLOG ENTRIES -->
-			</div>
-		
-		<!-- END GRID -->
-		</div><br>
-	
+		<c:if test="${!empty sessionScope.allArticles}">
+			<!-- Grid -->
+			<div class="w3-row">
+			
+				<!-- Blog entries -->
+				<div class="w3-col l12 s12">
+					<c:forEach items="${sessionScope.allArticles}" var="article">
+						<!-- Blog entry -->
+						<div class="w3-card-4 w3-margin w3-white">
+						  <div class="w3-container">
+						    <h3><b>${article.title}</b></h3>
+						    <h5><span class="w3-opacity">owned by ${article.authorName}</span></h5>
+						  </div>
+						  
+						  <div class="w3-container">
+						     <p>${article.content}</p>
+						  </div>
+						</div>
+						<hr>
+					</c:forEach>
+				<!-- END BLOG ENTRIES -->
+				</div>
+			
+			<!-- END GRID -->
+			</div><br>
+		</c:if>
 	<!-- END w3-content -->
 	</div>
 	

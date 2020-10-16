@@ -41,7 +41,8 @@
 		<header class="w3-container w3-center w3-padding-32"> 
 		  <h1><b>MY BLOG</b></h1>
 		  <p>Welcome to the blog of <span class="w3-tag">${sessionScope.username}</span></p>
-		  <a href="create_article.jsp">Create an Article</a>
+		  <a href="create_article.jsp">Create an Article</a> | 
+		  <a href="index.jsp">Back to Index</a>
 		</header>
 		
 		<!-- Grid -->
@@ -61,7 +62,7 @@
 					     <p>${article.content}</p>
 						 <div class="w3-row">
 							 <div class="w3-col m8 s12">
-							   <p><a class="w3-button w3-hover-blue w3-padding-large w3-white w3-border" href="edit_article.jsp?articleTitle=${article.title}"><b>Edit</b></a></p>
+							   <p><a class="w3-button w3-hover-blue w3-padding-large w3-white w3-border" href="edit_article.jsp?articleTitle=${article.title}&articleContent=${article.content}"><b>Edit</b></a></p>
 							 </div>
 							 <div class="w3-col m4 s12 w3-right-align">
 							   <p><a class="w3-button w3-hover-red w3-padding-large w3-black w3-border" href="DeleteArticleServlet?articleTitle=${article.title}"><b>Delete</b></a></p>
