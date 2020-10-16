@@ -27,4 +27,11 @@ public class Article {
 	public String getAuthorName() {
 		return _authorName;
 	}
+	
+	@Override
+	public String toString() {
+		return "Title: " + getTitle() + 
+			"\nContent: " + getContent() +
+			"\nAuthor: " + getAuthorName() + "\n";
+	}
 }

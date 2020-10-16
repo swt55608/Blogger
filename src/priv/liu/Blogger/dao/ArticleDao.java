@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import priv.liu.Blogger.dao.connector.DatabaseConnector;
 import priv.liu.Blogger.entity.Article;
 import priv.liu.Blogger.exception.InvalidArticleException;
-import priv.liu.Blogger.exception.ArticleNotExistException;
+import priv.liu.Blogger.exception.ArticleNotFoundException;
 import priv.liu.Blogger.exception.AuthorNotExistException;
 import priv.liu.Blogger.exception.EditArticleFailureExcetion;
 
@@ -34,26 +36,24 @@ public class ArticleDao {
 		}
 	}
 	
-	public Article findArticle(String articleTitle) throws ArticleNotExistException {
-		Article article = null;
+	public List<Article> findArticles(String authorName) throws AuthorNotExistException {
+		List<Article> articles = new ArrayList<Article>();
 		try {
-			String sql = "SELECT * FROM articles"
-					+ " JOIN authors ON articles.author_id = authors.id"
-					+ " WHERE title=?;";
+			int authorId = new AuthorDao().getId(authorName);
+			String sql = "SELECT * FROM articles" + 
+					" WHERE author_id = ?;";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);
-			prestmt.setString(1, articleTitle);
+			prestmt.setInt(1, authorId);
 			ResultSet rs = prestmt.executeQuery();
-			if (rs.next()) {
+			while (rs.next()) {
+				String title = rs.getString("title");
 				String content = rs.getString("content");
-				String authorName = rs.getString("username");
-				article = new Article(articleTitle, content, authorName);
-			} else {
-				throw new ArticleNotExistException(articleTitle);
+				articles.add(new Article(title, content, authorName));
 			}
 		} catch (SQLException sqlException) {
 			sqlException.printStackTrace();
 		}
-		return article;
+		return articles;
 	}
 	
 	public void editArticle(String articleTitle, Article newArticle, String authorName) throws AuthorNotExistException, EditArticleFailureExcetion {

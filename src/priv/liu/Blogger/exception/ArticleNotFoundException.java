@@ -1,9 +1,9 @@
 package priv.liu.Blogger.exception;
 
-public class ArticleNotExistException extends Exception {
+public class ArticleNotFoundException extends Exception {
 	private String _articleTitle;
 	
-	public ArticleNotExistException(String artitcleTitle) {
+	public ArticleNotFoundException(String artitcleTitle) {
 		_articleTitle = artitcleTitle;
 	}
 	
