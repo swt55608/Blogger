@@ -11,7 +11,6 @@ import java.util.List;
 import priv.liu.Blogger.dao.connector.DatabaseConnector;
 import priv.liu.Blogger.entity.Article;
 import priv.liu.Blogger.exception.InvalidArticleTitleException;
-import priv.liu.Blogger.exception.ArticleNotFoundException;
 import priv.liu.Blogger.exception.AuthorNotExistException;
 import priv.liu.Blogger.exception.EditArticleFailureExcetion;
 

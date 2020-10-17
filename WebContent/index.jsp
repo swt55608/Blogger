@@ -12,43 +12,13 @@
 </head>
 <body class="w3-light-grey">
 	
-
-<%-- 	<c:if test="${empty sessionScope.username}"> --%>
-<!-- 		<div> -->
-<!-- 			<a href="register.jsp">Register</a> | -->
-<!-- 			<a href="login.jsp">Login</a> -->
-<!-- 		</div> -->
-<%-- 	</c:if> --%>
-	
-<%-- 	<c:if test="${!empty sessionScope.username}"> --%>
-<!-- 		<div> -->
-<%-- 			Welcome! <a href="author_personal_page.jsp">${sessionScope.username}</a> | --%>
-<!-- 			<a href="LogoutServlet">Logout</a> -->
-<!-- 		</div> -->
-<%-- 	</c:if> --%>
-	
-<%-- 	<c:forEach items="${sessionScope.allArticles}" var="article"> --%>
-<!-- 		<div style="border: 2px solid gray;"> -->
-<%-- 			<h2>${article.title}</h2> --%>
-<%-- 			<p>${article.content}</p> --%>
-<%-- 			<h5>owned by ${article.authorName}</h5> --%>
-<!-- 		</div> -->
-<!-- 		<br> -->
-<%-- 	</c:forEach> --%>
-	
-
-
 	<%@ include file="errorMessageModal.jsp" %>
 	<c:if test="${!empty requestScope.errorMessage}">
 		<script>
 		document.getElementById('errorMessageModal').style.display='block';
 		</script>
 	</c:if>
-	
-	
-	
-	
-	
+
 	<%@ include file="register.jsp" %>
 	<%@ include file="login.jsp" %>
 	

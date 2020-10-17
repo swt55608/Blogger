@@ -12,26 +12,12 @@
 </head>
 <body class="w3-light-grey">
 
-
-<!-- 	<h1>Create an Article</h1> -->
-<!-- 	<form action="CreateArticleServlet" method="get"> -->
-<!-- 		Title: <input type="text" name="articleTitle"> <br> -->
-<!-- 		Content: <input type="text" name="articleContent"> <br> -->
-<!-- 		<input type="submit"> -->
-<!-- 	</form> -->
-	
-	
 	<%@ include file="errorMessageModal.jsp" %>
 	<c:if test="${!empty requestScope.errorMessage}">
 		<script>
 		document.getElementById('errorMessageModal').style.display='block';
 		</script>
 	</c:if>
-	
-	
-	
-	
-	
 	
 	<div class="w3-content" style="max-width:1400px">
 	

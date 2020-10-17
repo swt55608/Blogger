@@ -118,15 +118,6 @@
 	</style>
 </head>
 <body>
-<!-- 	<form action="RegisterServlet" method="post"> -->
-<!-- 		Username: <input type="text" name="username"> <br> -->
-<!-- 		Password: <input type="password" name="password"> <br> -->
-<!-- 		<input type="submit"> -->
-<!-- 	</form> -->
-	
-	
-<!-- 	<button onclick="document.getElementById('registerModal').style.display='block'" style="width:auto;">Register</button> -->
-
 	<div id="registerModal" class="modal">
 	  <span onclick="document.getElementById('registerModal').style.display='none'" class="close" title="Close Modal">&times;</span>
 	  <form class="modal-content" action="RegisterServlet" method="post">
