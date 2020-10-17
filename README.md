@@ -1,4 +1,5 @@
 # Blogger
+![](https://i.imgur.com/6c7dJyN.png)
 
 <p>Blogger is a web blog, written in Java Servlet & JSP, which user can</p> 
 <ul>
@@ -39,7 +40,6 @@ Password: test1234
 
 ### View Blogger
 http://localhost:8080/Blogger/
-![](https://i.imgur.com/6c7dJyN.png)
 
 ## Architecture
 ![](https://i.imgur.com/FSj3INx.png)
