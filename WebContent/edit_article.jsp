@@ -10,13 +10,14 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 </head>
 <body class="w3-light-grey">
-	<h1>Edit an Article: ${param.articleTitle}</h1>
-	<form action="EditArticleServlet" method="get">
-		<input type="hidden" name="articleTitle" value="${param.articleTitle}">
-		Title: <input type="text" name="newArticleTitle"> <br>
-		Content: <input type="text" name="newArticleContent"> <br>
-		<input type="submit">
-	</form>
+
+<%-- 	<h1>Edit an Article: ${param.articleTitle}</h1> --%>
+<!-- 	<form action="EditArticleServlet" method="get"> -->
+<%-- 		<input type="hidden" name="articleTitle" value="${param.articleTitle}"> --%>
+<!-- 		Title: <input type="text" name="newArticleTitle"> <br> -->
+<!-- 		Content: <input type="text" name="newArticleContent"> <br> -->
+<!-- 		<input type="submit"> -->
+<!-- 	</form> -->
 	${requestScope.errorMessage}
 	
 	
@@ -28,6 +29,7 @@
 		<header class="w3-container w3-center w3-padding-32"> 
 		  <h1><b>MY BLOG</b></h1>
 		  <p>Welcome to the blog of <span class="w3-tag">${sessionScope.username}</span></p>
+		  <a href="index.jsp">Back to Index</a>
 		</header>
 		
 		<!-- Grid -->

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +17,37 @@ import priv.liu.Blogger.exception.EditArticleFailureExcetion;
 
 public class ArticleDao {
 	private Connection _conn;
+	private String _tableName;
 	
 	public ArticleDao() {
 		_conn = new DatabaseConnector().getConnection();
+		_tableName = "articles";
+		createTableIfNotExists();
+	}
+	
+	private void createTableIfNotExists() {
+		try {
+			String sql = "CREATE TABLE IF NOT EXISTS " + _tableName + " (" + 
+					"    id INT NOT NULL AUTO_INCREMENT," + 
+					"    title VARCHAR(50) NOT NULL," + 
+					"    content VARCHAR(50) NOT NULL," + 
+					"    author_id INT NOT NULL," + 
+					"    PRIMARY KEY (id)," + 
+					"    FOREIGN KEY (author_id) REFERENCES authors(id)," + 
+					"    UNIQUE (title)," + 
+					"    CHECK (title <> '')" + 
+					");";
+			Statement stmt = _conn.createStatement();
+			stmt.executeUpdate(sql);
+		} catch (SQLException sqlException) {
+			sqlException.printStackTrace();
+		}
 	}
 	
 	public void create(Article article, String authorName) throws InvalidArticleTitleException, AuthorNotExistException {
 		try {
 			int authorId = new AuthorDao().getId(authorName);
-			String sql = "INSERT INTO articles (title, content, author_id)"
+			String sql = "INSERT INTO " + _tableName + " (title, content, author_id)"
 					+ " VALUES (?, ?, ?);";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);
 			prestmt.setString(1, article.getTitle());
@@ -39,7 +62,7 @@ public class ArticleDao {
 	public List<Article> getArticles() {
 		List<Article> articles = new ArrayList<Article>();
 		try {
-			String sql = "SELECT title, content, authors.username FROM articles"
+			String sql = "SELECT title, content, authors.username FROM " + _tableName
 					+ " JOIN authors ON articles.author_id = authors.id;";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);;
 			ResultSet rs = prestmt.executeQuery();
@@ -59,8 +82,8 @@ public class ArticleDao {
 		List<Article> articles = new ArrayList<Article>();
 		try {
 			int authorId = new AuthorDao().getId(authorName);
-			String sql = "SELECT * FROM articles" + 
-					" WHERE author_id = ?;";
+			String sql = "SELECT * FROM " + _tableName
+					+ " WHERE author_id = ?;";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);
 			prestmt.setInt(1, authorId);
 			ResultSet rs = prestmt.executeQuery();
@@ -78,7 +101,7 @@ public class ArticleDao {
 	public void editArticle(String articleTitle, Article newArticle, String authorName) throws AuthorNotExistException, EditArticleFailureExcetion {
 		try {
 			int authorId = new AuthorDao().getId(authorName);
-			String sql = "UPDATE articles" + 
+			String sql = "UPDATE " + _tableName + 
 					" SET title=?, content=?" + 
 					" WHERE title=? AND author_id=?;";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);
@@ -98,7 +121,7 @@ public class ArticleDao {
 		boolean isDeleted = false;
 		try {
 			int authorId = new AuthorDao().getId(authorName);
-			String sql = "DELETE FROM articles" + 
+			String sql = "DELETE FROM " + _tableName + 
 					" WHERE title=? AND author_id=?;";
 			PreparedStatement prestmt = _conn.prepareStatement(sql);
 			prestmt.setString(1, articleTitle);
