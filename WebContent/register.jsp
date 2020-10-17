@@ -124,8 +124,6 @@
 <!-- 		<input type="submit"> -->
 <!-- 	</form> -->
 	
-	${requestScope.errorMessage} <br>
-	
 	
 <!-- 	<button onclick="document.getElementById('registerModal').style.display='block'" style="width:auto;">Register</button> -->
 

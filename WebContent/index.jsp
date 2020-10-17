@@ -36,7 +36,14 @@
 <!-- 		<br> -->
 <%-- 	</c:forEach> --%>
 	
-	
+
+
+
+	<c:if test="${!empty requestScope.errorMessage}">
+			<script type="text/javascript">
+			alert("Failed");
+			</script>
+	</c:if>
 	
 	
 	
@@ -66,10 +73,18 @@
 			</c:if>
 		</header>
 		
-		<c:if test="${!empty sessionScope.allArticles}">
-			<!-- Grid -->
-			<div class="w3-row">
-			
+		<c:if test="${empty sessionScope.allArticles}">
+			<button onclick="document.getElementById('loginModal').style.display='block'" class="w3-xxlarge" style="width:100%; border:0px; padding:0px; margin:0px;">
+				<div class="w3-container w3-gray w3-hover-green w3-center w3-allerta">
+			  		No One Posts an Article here<br>Join Us to Post Your AMAZING Story
+				</div>
+			</button>
+		</c:if>
+		
+		<!-- Grid -->
+		<div class="w3-row">
+	
+			<c:if test="${!empty sessionScope.allArticles}">	
 				<!-- Blog entries -->
 				<div class="w3-col l12 s12">
 					<c:forEach items="${sessionScope.allArticles}" var="article">
@@ -88,10 +103,10 @@
 					</c:forEach>
 				<!-- END BLOG ENTRIES -->
 				</div>
-			
-			<!-- END GRID -->
-			</div><br>
-		</c:if>
+			</c:if>
+		<!-- END GRID -->
+		</div><br>
+		
 	<!-- END w3-content -->
 	</div>
 	

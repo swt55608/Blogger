@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
 		} catch (RegisterException e) {
 			session.setAttribute("username", null);
 			request.setAttribute("errorMessage", e.getMessage());
-			request.getRequestDispatcher("register.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 	}
 
