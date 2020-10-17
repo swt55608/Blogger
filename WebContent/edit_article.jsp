@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,14 @@
 <!-- 		Content: <input type="text" name="newArticleContent"> <br> -->
 <!-- 		<input type="submit"> -->
 <!-- 	</form> -->
-	${requestScope.errorMessage}
+	
+	
+	<%@ include file="errorMessageModal.jsp" %>
+	<c:if test="${!empty requestScope.errorMessage}">
+		<script>
+		document.getElementById('errorMessageModal').style.display='block';
+		</script>
+	</c:if>
 	
 	
 	

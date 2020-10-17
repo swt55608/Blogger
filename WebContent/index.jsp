@@ -38,12 +38,13 @@
 	
 
 
-
+	<%@ include file="errorMessageModal.jsp" %>
 	<c:if test="${!empty requestScope.errorMessage}">
-			<script type="text/javascript">
-			alert("Failed");
-			</script>
+		<script>
+		document.getElementById('errorMessageModal').style.display='block';
+		</script>
 	</c:if>
+	
 	
 	
 	
@@ -73,12 +74,20 @@
 			</c:if>
 		</header>
 		
-		<c:if test="${empty sessionScope.allArticles}">
+		<c:if test="${empty sessionScope.allArticles && empty sessionScope.username}">
 			<button onclick="document.getElementById('loginModal').style.display='block'" class="w3-xxlarge" style="width:100%; border:0px; padding:0px; margin:0px;">
 				<div class="w3-container w3-gray w3-hover-green w3-center w3-allerta">
 			  		No One Posts an Article here<br>Join Us to Post Your AMAZING Story
 				</div>
 			</button>
+		</c:if>
+		
+		<c:if test="${empty sessionScope.allArticles && !empty sessionScope.username}">
+			<a href="create_article.jsp">
+				<div class="w3-container w3-gray w3-hover-green w3-center w3-allerta">
+				  <p class="w3-xxlarge">Post Your AMAZING Story!</p>
+				</div>
+			</a>
 		</c:if>
 		
 		<!-- Grid -->
